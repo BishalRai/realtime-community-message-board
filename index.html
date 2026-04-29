@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bulletin — Live Community Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-wrap">
+        <span class="logo-mark">◈</span>
+        <span class="logo-text">bulletin</span>
+      </div>
+      <div class="header-meta">
+        <span class="live-dot"></span>
+        <span class="live-label" id="liveLabel">connecting…</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero-kicker">real-time / firebase / community</p>
+    <h1 class="hero-title">The&nbsp;Board</h1>
+    <p class="hero-sub">Messages arrive and vanish live. No refresh needed — Firestore streams every change straight to your screen.</p>
+  </section>
+
+  <!-- Compose -->
+  <section class="compose-section">
+    <div class="compose-card">
+      <div class="compose-header">
+        <span class="compose-label">Post a message</span>
+        <span class="char-count" id="charCount">0 / 280</span>
+      </div>
+      <div class="compose-fields">
+        <input
+          type="text"
+          id="nameInput"
+          placeholder="Your name"
+          maxlength="40"
+          autocomplete="off"
+        />
+        <textarea
+          id="msgInput"
+          placeholder="What's on your mind?"
+          maxlength="280"
+          rows="3"
+        ></textarea>
+      </div>
+      <div class="compose-footer">
+        <div class="tag-row">
+          <button class="tag-btn active" data-tag="general">general</button>
+          <button class="tag-btn" data-tag="idea">idea</button>
+          <button class="tag-btn" data-tag="question">question</button>
+          <button class="tag-btn" data-tag="alert">alert</button>
+        </div>
+        <button class="post-btn" id="postBtn">
+          <span class="btn-text">Post</span>
+          <span class="btn-icon">→</span>
+        </button>
+      </div>
+      <div class="compose-error" id="composeError"></div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num" id="totalPosts">—</span>
+      <span class="stat-label">posts today</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num" id="totalAuthors">—</span>
+      <span class="stat-label">authors</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num" id="latestTag">—</span>
+      <span class="stat-label">top tag</span>
+    </div>
+  </div>
+
+  <!-- Filter row -->
+  <div class="filter-row">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="general">General</button>
+    <button class="filter-btn" data-filter="idea">Idea</button>
+    <button class="filter-btn" data-filter="question">Question</button>
+    <button class="filter-btn" data-filter="alert">Alert</button>
+    <div class="sort-wrap">
+      <select id="sortSelect">
+        <option value="new">Newest first</option>
+        <option value="old">Oldest first</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Board -->
+  <main class="board" id="board">
+    <div class="skeleton-wrap" id="skeleton">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+  </main>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Firebase SDK -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
